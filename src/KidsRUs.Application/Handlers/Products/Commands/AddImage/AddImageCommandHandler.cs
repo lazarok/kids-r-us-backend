@@ -30,7 +30,7 @@ public class AddImageCommandHandler : IRequestHandler<AddImageCommand, ApiRespon
 
         var productId = request.ProductSku.FromHashId();
 
-        if (!_unitOfWork.Product.Any(_ => _.Id == productId))
+        if (!_unitOfWork.Product.Any(_ => _.Id == productId && !_.Deleted))
         {
             throw new NotFoundException("Product", request.ProductSku);
         }

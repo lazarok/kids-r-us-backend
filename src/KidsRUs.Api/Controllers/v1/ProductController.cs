@@ -6,6 +6,8 @@ using KidsRUs.Application.Handlers.Products.Commands.UpdateProduct;
 using KidsRUs.Application.Handlers.Products.Queries.GetAllProduct;
 using KidsRUs.Application.Handlers.Products.Queries.GetCountProduct;
 using KidsRUs.Application.Handlers.Products.Queries.GetProduct;
+using KidsRUs.Application.Handlers.Products.Queries.GetProductsOutOfStock;
+using KidsRUs.Application.Handlers.Sales.Commands.CreateSale;
 using KidsRUs.Application.Models.Response;
 using KidsRUs.Application.Models.ViewModels;
 using KidsRUs.Application.Pagination;
@@ -33,7 +35,7 @@ public class ProductController : BaseApiController
     {
         return Ok(await Mediator.Send(new GetProductQuery(sku)));
     }
-    
+
     [ProducesResponseType(typeof(PaginationResponse<ProductVm>), StatusCodes.Status200OK)]
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] GetAllProductQuery query)
@@ -44,6 +46,13 @@ public class ProductController : BaseApiController
     [ProducesResponseType(typeof(ApiResponse<int>), StatusCodes.Status200OK)]
     [HttpGet("count")]
     public async Task<IActionResult> GetCount([FromQuery] GetCountProductQuery query)
+    {
+        return Ok(await Mediator.Send(query));
+    }
+    
+    [ProducesResponseType(typeof(PaginationResponse<ProductVm>), StatusCodes.Status200OK)]
+    [HttpGet("out-of-stock")]
+    public async Task<IActionResult> GetProductsOutOfStock([FromQuery] GetProductsOutOfStockQuery query)
     {
         return Ok(await Mediator.Send(query));
     }
@@ -86,7 +95,7 @@ public class ProductController : BaseApiController
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status403Forbidden)]
-    //[Authorize(Roles = "Admin,Editor")]
+    [Authorize(Roles = "Admin,Editor")]
     [HttpDelete("{sku}")]
     public async Task<IActionResult> Delete(string sku)
     {

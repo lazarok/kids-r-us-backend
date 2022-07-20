@@ -3,11 +3,7 @@ using KidsRUs.Application.Repositories;
 using KidsRUs.Domain.Entities;
 using KidsRUs.Persistence.Common;
 using KidsRUs.Persistence.Context;
-using System.Linq;
-using KidsRUs.Application.Extensions;
-using KidsRUs.Application.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace KidsRUs.Persistence.Repositories;
 
@@ -25,7 +21,7 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
         return await _context.Products
             .Include(_ => _.Category)
             .Include(_ => _.Tags)
-            .SingleOrDefaultAsync(_ => _.Id == id);
+            .SingleOrDefaultAsync(_ => _.Id == id && !_.Deleted);
     }
 
     public IQueryable<Product> GetAll(ProductFilter filter)
@@ -33,6 +29,7 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
         var queryable = _context.Products
             .Include(_ => _.Category)
             .Include(_ => _.Tags)
+            .Where(_ => !_.Deleted)
             .AsQueryable();
         
         if (!string.IsNullOrEmpty(filter.Name))
@@ -67,6 +64,23 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
             queryable = queryable.Where(_ => _.Price >= filter.MinPrice && _.Price <= filter.MaxPrice);
         }
 
+        return queryable;
+    }
+
+    public IQueryable<Product> GetProductsOutOfStock(ProductsOutOfStockFilter filter)
+    {
+        var queryable = _context.Products
+            .Include(_ => _.Category)
+            .Include(_ => _.Tags)
+            .Where(_ => _.ProductStock <= 0 && !_.Deleted)
+            .AsQueryable();
+        
+        if (!string.IsNullOrEmpty(filter.Search))
+        {
+            queryable = queryable.Where(_ => _.Name.ToLower().Contains(filter.Search.ToLower()));
+            queryable = queryable.Where(_ => _.Description.ToLower().Contains(filter.Search.ToLower()));
+        }
+        
         return queryable;
     }
 }

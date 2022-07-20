@@ -18,7 +18,7 @@ public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand,
             throw new NotFoundException("Product", request.Sku);
         }
 
-        _unitOfWork.Product.Remove(entity);
+        entity.Deleted = true;
 
         await _unitOfWork.SaveAsync(cancellationToken);
         

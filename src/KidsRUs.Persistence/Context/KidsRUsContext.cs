@@ -10,6 +10,7 @@ public class KidsRUsContext : DbContext
     public DbSet<Image> Images { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Role> Roles { get; set; }
+    public DbSet<Sale> Sales { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<User> Users { get; set; }
 

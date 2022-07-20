@@ -3,6 +3,7 @@ using System;
 using KidsRUs.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KidsRUs.Persistence.Migrations
 {
     [DbContext(typeof(KidsRUsContext))]
-    partial class KidsRUsContextModelSnapshot : ModelSnapshot
+    [Migration("20220720062149_Update06")]
+    partial class Update06
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
