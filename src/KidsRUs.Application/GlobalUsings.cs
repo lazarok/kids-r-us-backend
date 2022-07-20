@@ -1,0 +1,15 @@
+global using System.Net;
+global using KidsRUs.Application.Models.Response;
+global using KidsRUs.Application.Exceptions;
+global using FluentValidation.Results;
+global using FluentValidation;
+global using MediatR;
+global using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
+global using AutoMapper;
+global using KidsRUs.Application.Mappings;
+global using KidsRUs.Domain.Entities;
+global using KidsRUs.Application.Models.ViewModels;
+global using KidsRUs.Application.Helper;
+global using KidsRUs.Application.Pagination;
+global using KidsRUs.Application.Repositories.Common;
+global using KidsRUs.Application.QueryFilters;
