@@ -11,8 +11,7 @@ public static class Startup
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        var dbPath = Path.Join(path, configuration["KidsRUsDb"]);
+        var dbPath = configuration["KidsRUsDb"];
         
         services.AddDbContext<KidsRUsContext>(options =>
             options.UseSqlite($"Data Source={dbPath}",

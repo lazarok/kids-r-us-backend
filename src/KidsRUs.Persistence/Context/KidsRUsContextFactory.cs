@@ -26,11 +26,10 @@ public class KidsRUsContextFactory : IDesignTimeDbContextFactory<KidsRUsContext>
 
         var configuration = builder.Build();
 
-        var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        var dbPath = Path.Join(path, configuration["KidsRUsDb"]);
+        var dbPath = configuration["KidsRUsDb"];
         
         var optionsBuilder = new DbContextOptionsBuilder<KidsRUsContext>();
-        optionsBuilder.UseSqlite($"Data Source={dbPath}");
+        optionsBuilder.UseSqlite($"Data Source={dbPath}", b => b.MigrationsAssembly(typeof(KidsRUsContext).Assembly.FullName));
         return new KidsRUsContext(optionsBuilder.Options);
     }
 }
