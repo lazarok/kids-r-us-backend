@@ -22,7 +22,7 @@ public class RefreshTokenCommandHandler : IRequestHandler<RefreshTokenCommand, A
     public async Task<ApiResponse<TokenDto>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
     {
         var userId = _tokenService.GetClaims(request.AccessToken).GetClaimValue<int>(ClaimTypes.NameIdentifier);
-        var user = _unitOfWork.User.GetById(userId);
+        var user = await _unitOfWork.User.GetByIdAsync(userId);
 
         if (string.IsNullOrEmpty(user.RefreshToken) || user.RefreshToken != request.RefreshToken)
         {

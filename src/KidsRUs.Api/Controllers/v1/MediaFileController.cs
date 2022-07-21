@@ -27,7 +27,10 @@ public class MediaFileController : BaseApiController
     }
 
     [ProducesResponseType(typeof(ApiResponse<string>), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ApiResponse<string>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status403Forbidden)]
+    [Authorize(Roles = "Admin,Editor")]
     [HttpPost("upload/product/{productSku}")]
     public async Task<ActionResult> UploadProduct([FromRoute] string productSku, IFormFile file)
     {

@@ -13,6 +13,11 @@ public class UserRepository: BaseRepository<User>, IUserRepository
     {
         _context = context;
     }
+    
+    public async Task<User> GetByIdAsync(int id)
+    {
+        return await _context.Users.Include(_ => _.Role).SingleOrDefaultAsync(_ => _.Id == id);
+    }
 
     public async Task<User> FindByEmailAsync(string email)
     {
