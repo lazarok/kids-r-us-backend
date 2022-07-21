@@ -8,7 +8,7 @@ public static class PaginationResponseExtensions
         where T : class
         where TDestination : class, IMapFrom<T>
     {
-        var list = await repository.ToListAsync(cancellationToken);
+        var list = await repository.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
         var count = await repository.CountAsync(cancellationToken);
 
         var destinationList = map.Map<List<TDestination>>(list);

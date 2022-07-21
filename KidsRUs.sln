@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidsRUs.Api", "src\KidsRUs.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidsRUs.Infrastructure", "src\KidsRUs.Infrastructure\KidsRUs.Infrastructure.csproj", "{E23FA470-6F5F-4D53-AE67-2BD1088DB79C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidsRUs.IntegrationTests", "tests\KidsRUs.IntegrationTests\KidsRUs.IntegrationTests.csproj", "{BF95F5F2-28DC-49A4-9FB7-D46DBE9A973B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 		{08DDE7B6-1A9D-4520-A061-A9B11CDD8009} = {93E24B3A-A96D-4E24-BC67-EF9BD0DE5EBD}
 		{87B8804D-6C5F-4077-8589-46F6D57BF70C} = {93E24B3A-A96D-4E24-BC67-EF9BD0DE5EBD}
 		{E23FA470-6F5F-4D53-AE67-2BD1088DB79C} = {93E24B3A-A96D-4E24-BC67-EF9BD0DE5EBD}
+		{BF95F5F2-28DC-49A4-9FB7-D46DBE9A973B} = {05B0EA3A-D3D0-4B76-9CF7-7AAD27472A96}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5D705D8C-2EA9-44AF-8B79-50A5AC68D192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,5 +50,9 @@ Global
 		{E23FA470-6F5F-4D53-AE67-2BD1088DB79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E23FA470-6F5F-4D53-AE67-2BD1088DB79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E23FA470-6F5F-4D53-AE67-2BD1088DB79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF95F5F2-28DC-49A4-9FB7-D46DBE9A973B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF95F5F2-28DC-49A4-9FB7-D46DBE9A973B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF95F5F2-28DC-49A4-9FB7-D46DBE9A973B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF95F5F2-28DC-49A4-9FB7-D46DBE9A973B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
