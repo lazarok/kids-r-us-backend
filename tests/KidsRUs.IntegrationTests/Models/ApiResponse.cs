@@ -7,5 +7,5 @@ public class ApiResponse
 
 public class ApiResponse<T> : ApiResponse
 {
-    public T Data { get; set; }
+    public T Data { get; set; } = default!;
 }

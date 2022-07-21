@@ -2,7 +2,6 @@ using System.Net.Http.Headers;
 using KidsRUs.Application.Handlers.Users.Commands.SignIn;
 using KidsRUs.Application.Helper;
 using KidsRUs.Application.Models.Dtos;
-using KidsRUs.Application.Repositories.Common;
 using KidsRUs.Domain.Common;
 using KidsRUs.IntegrationTests.Seeds;
 using KidsRUs.Persistence.Context;
@@ -28,10 +27,10 @@ public class TestBase
         var context = scope.ServiceProvider.GetService<KidsRUsContext>();
         var unitOfWork = scope.ServiceProvider.GetService<IUnitOfWork>();
         
-        context.Database.EnsureDeleted(); 
-        context.Database.EnsureCreated();
-        
-        BaseSeed.SeedDataAsync(unitOfWork);
+        context?.Database.EnsureDeleted(); 
+        context?.Database.EnsureCreated();
+
+        if (unitOfWork != null) BaseSeed.SeedDataAsync(unitOfWork);
     }
     
     /// <summary>

@@ -16,9 +16,12 @@ public class GetCategoriesTests : TestBase
         // Assert
         Assert.NotNull(pagination);
         Assert.IsType<PaginationResponse<CategoryVm>>(pagination);
-        Assert.Equal(pagination.PageSize, 10);
-        Assert.Equal(pagination.CurrentPage, 1);
-        Assert.Equal(pagination.TotalPages, 2);
+        if (pagination != null)
+        {
+            Assert.Equal(10, pagination.PageSize);
+            Assert.Equal(1, pagination.CurrentPage);
+            Assert.Equal(2, pagination.TotalPages);
+        }
     }
     
     [Fact]
@@ -33,9 +36,12 @@ public class GetCategoriesTests : TestBase
         // Assert
         Assert.NotNull(pagination);
         Assert.IsType<PaginationResponse<CategoryVm>>(pagination);
-        Assert.Equal(pagination.PageSize, 12);
-        Assert.Equal(pagination.CurrentPage, 2);
-        Assert.Equal(pagination.TotalPages, 2);
-        Assert.Equal(pagination.Data.Count, 6);
+        if (pagination != null)
+        {
+            Assert.Equal(12, pagination.PageSize);
+            Assert.Equal(2, pagination.CurrentPage);
+            Assert.Equal(2, pagination.TotalPages);
+            Assert.Equal(6, pagination.Data.Count);
+        }
     }
 }

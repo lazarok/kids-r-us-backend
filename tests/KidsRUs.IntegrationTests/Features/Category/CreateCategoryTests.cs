@@ -11,7 +11,7 @@ public class CreateCategoryTests : TestBase
     public async Task Category_IsCreated_WhenValidFieldsAreProvided_WithAdminUser()
     {
         // Arrenge
-        var (client, UserId) = await GetClientAsAdmin();
+        var (client, _) = await GetClientAsAdmin();
         var data = new Faker<CreateCategoryDto>()
             .RuleFor(_ => _.Name, f => $"{f.Lorem.Word()}-{Guid.NewGuid()}")
             .Generate();
