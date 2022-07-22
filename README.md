@@ -41,6 +41,25 @@ Stack:
 - Al vender un producto se guarda la fecha de venta.
 - Al solicitar la ganancia total es posible pasarle un intervalo de fechas para saber la ganancia es ese período de tiempo.
 
+
+## Interactuar con el API
+
+Los endpoint que agregan o actualizan registros, en la base de datos, están protegidos.
+Se requiere de email y password para poder generar un access token. 
+Hay dos usuarios que se crean por defecto en la base de datos.
+
+###### Usuario con role Admin:
+* Email: admin@mail.com
+* Password: admin*
+* FullName: Admin Admin"
+###### Usuario con role Editor:
+* Email: editor@mail.com
+* Password: editor*
+* FullName: Editor Editor
+
+
+
+
 ## Requerimientos
 
 - .NET 6 (6.0.301 o superior)
