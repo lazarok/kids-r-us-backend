@@ -11,7 +11,7 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
         RuleFor(_ => _.Name)
             .NotNull().WithMessage("'{PropertyName}' is required.")
             .NotEmpty().WithMessage("'{PropertyName}' is empty.")
-            .MaximumLength(30).WithMessage("'{PropertyName}' must have maximum 30 characters.")
+            .MaximumLength(50).WithMessage("'{PropertyName}' must have maximum 50 characters.")
             .MustAsync(IsUniqueName).WithMessage("'{PropertyName}' already exists.");
         
         RuleFor(_ => _.Description)

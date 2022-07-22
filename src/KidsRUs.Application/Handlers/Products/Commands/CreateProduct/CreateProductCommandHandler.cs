@@ -21,6 +21,8 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
         _unitOfWork.Tag.AddRange(request.Tags?.Select(tagName => new Tag {ProductId = entity.Id, Name = tagName}));
         await _unitOfWork.SaveAsync(cancellationToken);
 
+        entity = await _unitOfWork.Product.GetById(entity.Id);
+
         var response = new ApiResponse<ProductVm>
         {
             Data = _mapper.Map<ProductVm>(entity)

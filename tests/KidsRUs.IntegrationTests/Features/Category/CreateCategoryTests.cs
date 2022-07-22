@@ -1,7 +1,6 @@
 using System.Net;
 using Bogus;
 using KidsRUs.Application.Handlers.Categories.Commands.CreateCategory;
-using KidsRUs.Application.Models.ViewModels;
 
 namespace KidsRUs.IntegrationTests.Features.Category;
 
@@ -18,11 +17,12 @@ public class CreateCategoryTests : TestBase
 
         // Act
         var postPesponse = await client.PostAsJsonAsync("/api/v1/categories", data);
-        postPesponse.EnsureSuccessStatusCode();
 
         // Assert
         
         Assert.True(postPesponse.IsSuccessStatusCode);
+
+
         
         var apiResponse = await postPesponse.Content.ReadFromJsonAsync<ApiResponse<CategoryVm>>();
         Assert.NotNull(apiResponse);
@@ -44,5 +44,8 @@ public class CreateCategoryTests : TestBase
         // Assert
         Assert.False(postPesponse.IsSuccessStatusCode);
         Assert.Equal(HttpStatusCode.Unauthorized, postPesponse.StatusCode);
+        
+        var errorResponse = await postPesponse.Content.ReadFromJsonAsync<ErrorResponse>();
+        Assert.NotNull(errorResponse);
     }
 }

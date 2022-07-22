@@ -22,7 +22,7 @@ public class CreateSaleCommandHandler : IRequestHandler<CreateSaleCommand, ApiRe
 
         if (entity.ProductStock <= 0)
         {
-            throw new CustomException($"Product '{request.ProductSku}' has no stock ", errorStatus: ErrorStatus.Validation);
+            throw new CustomException($"Product '{request.ProductSku}' has no stock", errorStatus: ErrorStatus.Validation);
         }
 
         entity.ProductStock--;

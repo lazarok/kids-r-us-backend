@@ -1,48 +1,46 @@
-using KidsRUs.Application.Models.ViewModels;
+namespace KidsRUs.IntegrationTests.Features.Product;
 
-namespace KidsRUs.IntegrationTests.Features.Category;
-
-public class GetCategoriesTests : TestBase
+public class GetProductsTests : TestBase
 {
     [Fact]
-    public async Task Categories()
+    public async Task Products()
     {
         // Arrenge
         var client = Application.CreateClient();
 
         // Act
-        var pagination = await client.GetFromJsonAsync<PaginationResponse<CategoryVm>>("/api/v1/categories");
+        var pagination = await client.GetFromJsonAsync<PaginationResponse<ProductVm>>("/api/v1/products");
 
         // Assert
         Assert.NotNull(pagination);
-        Assert.IsType<PaginationResponse<CategoryVm>>(pagination);
+        Assert.IsType<PaginationResponse<ProductVm>>(pagination);
         if (pagination != null)
         {
             Assert.Equal(10, pagination.PageSize);
             Assert.Equal(1, pagination.CurrentPage);
             Assert.Equal(2, pagination.TotalPages);
-            Assert.Equal(18, pagination.TotalCount);
+            Assert.Equal(14, pagination.TotalCount);
         }
     }
     
     [Fact]
-    public async Task Categories_WithPagination()
+    public async Task Products_WithPagination()
     {
         // Arrenge
         var client = Application.CreateClient();
 
         // Act
-        var pagination = await client.GetFromJsonAsync<PaginationResponse<CategoryVm>>("/api/v1/categories?PageNumber=2&PageSize=12");
+        var pagination = await client.GetFromJsonAsync<PaginationResponse<ProductVm>>("/api/v1/products?PageNumber=2&PageSize=12");
 
         // Assert
         Assert.NotNull(pagination);
-        Assert.IsType<PaginationResponse<CategoryVm>>(pagination);
+        Assert.IsType<PaginationResponse<ProductVm>>(pagination);
         if (pagination != null)
         {
             Assert.Equal(12, pagination.PageSize);
             Assert.Equal(2, pagination.CurrentPage);
             Assert.Equal(2, pagination.TotalPages);
-            Assert.Equal(6, pagination.Data.Count);
+            Assert.Equal(2, pagination.Data.Count);
         }
     }
 }

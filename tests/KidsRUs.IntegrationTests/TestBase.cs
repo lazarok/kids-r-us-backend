@@ -3,7 +3,6 @@ using KidsRUs.Application.Handlers.Users.Commands.SignIn;
 using KidsRUs.Application.Helper;
 using KidsRUs.Application.Models.Dtos;
 using KidsRUs.Domain.Common;
-using KidsRUs.IntegrationTests.Seeds;
 using KidsRUs.Persistence.Context;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +29,7 @@ public class TestBase
         context?.Database.EnsureDeleted(); 
         context?.Database.EnsureCreated();
 
-        if (unitOfWork != null) BaseSeed.SeedDataAsync(unitOfWork);
+        if (unitOfWork != null) Seed.SeedDataAsync(unitOfWork);
     }
     
     /// <summary>
