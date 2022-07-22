@@ -34,9 +34,9 @@ Stack:
 
 ## Funcionalidades agregadas
 - CRUD de categorías.
-- El Listado de categorías tiene paginado (la paginacíon por defecto es de 10) y un campo (opcional) 'Search' que busca coincidencia en el nombre de la categoría.
-- El Listado de productos sin stock tiene paginado (la paginacíon por defecto es de 10) y un campo (opcional) 'Search' que busca coincidencia en el nombre y descripcíon del producto.
-- El Listado de productos vendidos tiene paginado (la paginacíon por defecto es de 10) y un campo (opcional) 'Search' que busca coincidencia en el nombre y descripcíon del producto.
+- El Listado de categorías tiene paginado (la paginación por defecto es de 10) y un campo (opcional) 'Search' que busca coincidencia en el nombre de la categoría.
+- El Listado de productos sin stock tiene paginado (la paginación por defecto es de 10) y un campo (opcional) 'Search' que busca coincidencia en el nombre y descripción del producto.
+- El Listado de productos vendidos tiene paginado (la paginación por defecto es de 10) y un campo (opcional) 'Search' que busca coincidencia en el nombre y descripción del producto.
 - Enpoint para agregar stock de un producto existente.
 - Al vender un producto se guarda la fecha de venta.
 - Al solicitar la ganancia total es posible pasarle un intervalo de fechas para saber la ganancia es ese período de tiempo.
