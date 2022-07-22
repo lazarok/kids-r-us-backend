@@ -24,6 +24,11 @@ public class CategoryController : BaseApiController
         _mapper = mapper;
     }
     
+    /// <summary>
+    /// Get category by sku of category
+    /// </summary>
+    /// <param name="sku"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(ApiResponse<CategoryVm>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
     [HttpGet("{sku}")]
@@ -32,6 +37,11 @@ public class CategoryController : BaseApiController
         return Ok(await Mediator.Send(new GetCategoryQuery(sku)));
     }
     
+    /// <summary>
+    /// Get categories. It is possible to search by category name
+    /// </summary>
+    /// <param name="query"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(PaginationResponse<CategoryVm>), StatusCodes.Status200OK)]
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] GetAllCategoryQuery query)
@@ -39,6 +49,11 @@ public class CategoryController : BaseApiController
         return Ok(await Mediator.Send(query));
     }
 
+    /// <summary>
+    /// Create a new category
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(ApiResponse<CategoryVm>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]

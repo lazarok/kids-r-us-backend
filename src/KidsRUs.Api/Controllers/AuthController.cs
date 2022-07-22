@@ -18,6 +18,11 @@ public class AuthController : BaseApiController
         _mapper = mapper;
     }
 
+    /// <summary>
+    /// Get access token
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(ApiResponse<TokenDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
@@ -28,6 +33,11 @@ public class AuthController : BaseApiController
         return Ok(await Mediator.Send(command));
     }
     
+    /// <summary>
+    /// Refresh access token when expired
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(ApiResponse<TokenDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]

@@ -571,3 +571,5 @@ FodyWeavers.xsd
 
 src/KidsRUs.Api/Images
 src/KidsRUs.Api/*.db
+src/KidsRUs.Api/kidsrus.db-shm
+src/KidsRUs.Api/kidsrus.db-wal

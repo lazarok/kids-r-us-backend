@@ -1,5 +1,6 @@
 using AutoMapper;
 using KidsRUs.Api.Controllers.Base;
+using KidsRUs.Application.Handlers.Products.Commands.AddStock;
 using KidsRUs.Application.Handlers.Products.Commands.CreateProduct;
 using KidsRUs.Application.Handlers.Products.Commands.DeleteProduct;
 using KidsRUs.Application.Handlers.Products.Commands.UpdateProduct;
@@ -50,6 +51,11 @@ public class ProductController : BaseApiController
         return Ok(await Mediator.Send(query));
     }
     
+    /// <summary>
+    /// Get product out of stock. It is possible to search by product name and product description
+    /// </summary>
+    /// <param name="query"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(PaginationResponse<ProductVm>), StatusCodes.Status200OK)]
     [HttpGet("out-of-stock")]
     public async Task<IActionResult> GetProductsOutOfStock([FromQuery] GetProductsOutOfStockQuery query)
@@ -69,6 +75,28 @@ public class ProductController : BaseApiController
         return StatusCode(StatusCodes.Status201Created, await Mediator.Send(command));
     }
     
+    /// <summary>
+    /// Add stock of a product
+    /// </summary>
+    /// <param name="sku">Sku of product</param>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [ProducesResponseType(typeof(ApiResponse<ProductVm>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status403Forbidden)]
+    [Authorize(Roles = "Admin,Editor")]
+    [HttpPut("stock/{sku}")]
+    public async Task<IActionResult> Put(string sku, [FromBody] AddStockDto request)
+    {
+        return Ok(await Mediator.Send(new AddStockCommand
+        {
+            ProductSku = sku,
+            ProductStock = request.ProductStock
+        }));
+    }
+    
     [ProducesResponseType(typeof(ApiResponse<ProductVm>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
@@ -83,7 +111,6 @@ public class ProductController : BaseApiController
             Sku = sku,
             Name = request.Name,
             Description = request.Description,
-            ProductStock = request.ProductStock,
             Price = request.Price,
             AverageRating = request.AverageRating,
             Info = request.Info

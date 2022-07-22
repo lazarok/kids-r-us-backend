@@ -15,6 +15,11 @@ namespace KidsRUs.Api.Controllers.v1;
 [Route("api/v{version:apiVersion}/sales")]
 public class SaleController : BaseApiController
 {
+    /// <summary>
+    /// Sell product by product sku. Selling one at a time
+    /// </summary>
+    /// <param name="productSku"></param>
+    /// <returns></returns>
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
@@ -25,6 +30,11 @@ public class SaleController : BaseApiController
         return NoContent();
     }
     
+    /// <summary>
+    /// Get products sold. It is possible to search by product name
+    /// </summary>
+    /// <param name="query"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(PaginationResponse<ProductVm>), StatusCodes.Status200OK)]
     [HttpGet("products-sold")]
     public async Task<IActionResult> GetProductsSold([FromQuery] GetProductsSoldQuery query)
@@ -33,9 +43,10 @@ public class SaleController : BaseApiController
     }
     
     /// <summary>
-    /// DateTime format UTC: 2022-07-20T06:31:27.140Z
+    /// Get gross profit. It is possible to request the gross profit in a given period of time,
+    /// this takes the date of the sale of the products
     /// </summary>
-    /// <param name="query"></param>
+    /// <param name="query">DateTime format UTC: 2022-07-20T06:31:27.140Z</param>
     /// <returns></returns>
     [ProducesResponseType(typeof(ApiResponse<decimal>), StatusCodes.Status200OK)]
     [HttpGet("gross-profit")]

@@ -13,6 +13,12 @@ namespace KidsRUs.Api.Controllers.v1;
 [Route("api/v{version:apiVersion}/tags")]
 public class TagController : BaseApiController
 {
+    /// <summary>
+    /// Add a new tag to existing product
+    /// </summary>
+    /// <param name="productSku"></param>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(ApiResponse<TagVm>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]

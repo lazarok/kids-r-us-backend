@@ -27,7 +27,6 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand,
 
         entity.Name = request.Name;
         entity.Description = request.Description;
-        entity.ProductStock = request.ProductStock;
         entity.Price = request.Price;
         entity.AverageRating = request.AverageRating;
         entity.Info = request.Info;

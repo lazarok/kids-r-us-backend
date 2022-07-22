@@ -26,6 +26,12 @@ public class MediaFileController : BaseApiController
         _productPictureService = productPictureService;
     }
 
+    /// <summary>
+    /// Add a new image to existing product
+    /// </summary>
+    /// <param name="productSku"></param>
+    /// <param name="file"></param>
+    /// <returns></returns>
     [ProducesResponseType(typeof(ApiResponse<string>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
